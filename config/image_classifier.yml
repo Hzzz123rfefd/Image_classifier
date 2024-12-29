@@ -1,0 +1,41 @@
+# config.yml
+
+model_type:
+  image_classifier_base_unet
+# mdoel args
+model:      
+  target_width: 32
+  target_height: 32  
+  in_channel: 3
+  hidden_channel: 1024
+  num_class: 10
+  device: cuda
+
+# trainning args
+traininng:
+  batch_size: 16               
+  epochs: 1000          
+  learning_rate: 0.0001   
+  optimizer: Adam              
+  weight_decay: 0.1
+  clip_max_norm: 0.5
+  factor: 0.3
+  patience: 15         
+  device: cuda
+
+dataset_type:
+  image_classifier
+dataset:
+  target_width: 32
+  target_height: 32
+  train_image_folder: mnist_train/images/train
+  test_image_folder: mnist_train/images/test
+  valid_image_folder: mnist_train/images/test
+  train_annotation_file: mnist_train/annotations/train/train_annotations.json
+  test_annotation_file: mnist_train/annotations/test/test_annotations.json
+  valid_annotation_file: mnist_train/annotations/test/test_annotations.json
+
+
+logging:
+  log_interval: 100             
+  save_dir: "./saved_model/image_classifier"   
